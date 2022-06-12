@@ -1,0 +1,29 @@
+# Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP .NET Core service.
+
+version: '3.4'
+
+services:
+  usermanager:
+    image: usermanager
+    build:
+      context: .
+      dockerfile: user-manager/PETRA.API/Dockerfile
+    ports:
+      - 5194:5194
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    volumes:
+      - ~/.vsdbg:/remote_debugger:rw
+  db:
+   image: postgres:14.1-alpine
+   restart: always
+   environment:
+     - POSTGRES_USER=postgres
+     - POSTGRES_PASSWORD=postgres
+   ports:
+     - '5432:5432'
+   volumes: 
+     - db:/var/lib/postgresql/data
+volumes:
+  db:
+    driver: local
