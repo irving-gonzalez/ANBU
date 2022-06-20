@@ -1,0 +1,3 @@
+[submodule "DDDMicroService"]
+	path = DDDMicroService
+	url = https://github.com/irving-gonzalez/DDDMicroService.git

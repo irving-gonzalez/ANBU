@@ -3,17 +3,19 @@
 version: '3.4'
 
 services:
-  usermanager:
-    image: usermanager
+  ddd-microservice:
+    image: ddd-microservice
+    container_name: ddd-microservice
     build:
       context: .
-      dockerfile: user-manager/PETRA.API/Dockerfile
+      dockerfile: DDDMicroservice/PETRA.API/Dockerfile
     ports:
       - 5194:5194
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-    volumes:
-      - ~/.vsdbg:/remote_debugger:rw
+      - ASPNETCORE_ENVIRONMENT=Docker
+    depends_on:
+      - db
+      - rabbitmq
   db:
    image: postgres:14.1-alpine
    restart: always
