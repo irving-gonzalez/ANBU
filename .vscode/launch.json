@@ -1,14 +1,17 @@
 {
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch User Manager API",
+            "name": ".NET Core Launch (web)",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/user-manager/PETRA.API/bin/Debug/net6.0/PETRA.API.dll",
+            "program": "${workspaceFolder}/DDDMicroService/PETRA.API/bin/Debug/net6.0/PETRA.API.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/user-manager/PETRA.API",
+            "cwd": "${workspaceFolder}/DDDMicroService/PETRA.API",
             "stopAtEntry": false,
             "serverReadyAction": {
                 "action": "openExternally",
@@ -25,15 +28,6 @@
             "name": ".NET Core Attach",
             "type": "coreclr",
             "request": "attach"
-        },
-        {
-            "name": "Docker .NET Core Launch",
-            "type": "docker",
-            "request": "launch",
-            "preLaunchTask": "docker-run: debug",
-            "netCore": {
-                "appProject": "${workspaceFolder}/user-manager/PETRA.API/PETRA.API.csproj"
-            }
         }
     ]
 }

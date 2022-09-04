@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/user-manager/PETRA.API/PETRA.API.csproj",
+                "${workspaceFolder}/DDDMicroService/PETRA.API/PETRA.API.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/user-manager/PETRA.API/PETRA.API.csproj",
+                "${workspaceFolder}/DDDMicroService/PETRA.API/PETRA.API.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -33,65 +33,9 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/user-manager/PETRA.API/PETRA.API.csproj"
+                "${workspaceFolder}/DDDMicroService/PETRA.API/PETRA.API.csproj"
             ],
             "problemMatcher": "$msCompile"
-        },
-        {
-            "type": "docker-build",
-            "label": "docker-build: debug",
-            "dependsOn": [
-                "build"
-            ],
-            "dockerBuild": {
-                "tag": "anbu:dev",
-                "target": "base",
-                "dockerfile": "${workspaceFolder}/user-manager/PETRA.API/Dockerfile",
-                "context": "${workspaceFolder}",
-                "pull": true
-            },
-            "netCore": {
-                "appProject": "${workspaceFolder}/user-manager/PETRA.API/PETRA.API.csproj"
-            }
-        },
-        {
-            "type": "docker-build",
-            "label": "docker-build: release",
-            "dependsOn": [
-                "build"
-            ],
-            "dockerBuild": {
-                "tag": "anbu:latest",
-                "dockerfile": "${workspaceFolder}/user-manager/PETRA.API/Dockerfile",
-                "context": "${workspaceFolder}",
-                "pull": true
-            },
-            "netCore": {
-                "appProject": "${workspaceFolder}/user-manager/PETRA.API/PETRA.API.csproj"
-            }
-        },
-        {
-            "type": "docker-run",
-            "label": "docker-run: debug",
-            "dependsOn": [
-                "docker-build: debug"
-            ],
-            "dockerRun": {},
-            "netCore": {
-                "appProject": "${workspaceFolder}/user-manager/PETRA.API/PETRA.API.csproj",
-                "enableDebugging": true
-            }
-        },
-        {
-            "type": "docker-run",
-            "label": "docker-run: release",
-            "dependsOn": [
-                "docker-build: release"
-            ],
-            "dockerRun": {},
-            "netCore": {
-                "appProject": "${workspaceFolder}/user-manager/PETRA.API/PETRA.API.csproj"
-            }
         }
     ]
 }
