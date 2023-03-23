@@ -9,7 +9,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/DDDMicroService/PETRA.API/bin/Debug/net6.0/PETRA.API.dll",
+            "program": "${workspaceFolder}/DDDMicroService/PETRA.API/bin/Debug/net7.0/PETRA.API.dll",
             "args": [],
             "cwd": "${workspaceFolder}/DDDMicroService/PETRA.API",
             "stopAtEntry": false,
