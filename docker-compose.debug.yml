@@ -7,25 +7,43 @@ services:
     image: ddd-microservice
     container_name: ddd-microservice
     build:
-      context: .
-      dockerfile: DDDMicroservice/PETRA.API/Dockerfile
+      context: ./DDDMicroservice
+      dockerfile: DDDMicroservice.API/Dockerfile
     ports:
-      - 5194:5194
+      - 5194:80
     environment:
       - ASPNETCORE_ENVIRONMENT=Docker
     depends_on:
       - db
       - rabbitmq
   db:
-   image: postgres:14.1-alpine
-   restart: always
-   environment:
-     - POSTGRES_USER=postgres
-     - POSTGRES_PASSWORD=postgres
-   ports:
-     - '5432:5432'
-   volumes: 
-     - db:/var/lib/postgresql/data
+    image: postgres:14.1-alpine
+    container_name: postgresql
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - db:/var/lib/postgresql/data
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - 6672:5672
+      - 15672:15672
+  nosql:
+    image: mongodb/mongodb-community-server:6.0-ubi8
+    container_name: nosql
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+    volumes:
+      - mongodb_data_container:/data/db
 volumes:
   db:
     driver: local
+  mongodb_data_container:
